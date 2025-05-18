@@ -1,0 +1,117 @@
+/* src/styles/Home.css */
+.home-container {
+  display: flex;
+  flex-direction: column;
+  padding-top: 100px; /* Push content below fixed header */
+}
+
+
+.home-content {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: margin-left 0.3s ease;
+}
+
+.hero-section {
+  text-align: center;
+  padding: 40px;
+  background: rgba(255, 255, 255, 0.9);
+  border-radius: 16px;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+  animation: fadeIn 1s ease-in-out;
+}
+
+.hero-title {
+  font-size: 3rem;
+  font-weight: 700;
+  color: #1a1a2e;
+  margin-bottom: 16px;
+}
+
+.hero-subtitle {
+  font-size: 1.2rem;
+  color: #666;
+  margin-bottom: 24px;
+}
+
+.login-button {
+  display: inline-block;
+  padding: 12px 32px;
+  background: #e94560;
+  color: #fff;
+  text-decoration: none;
+  border-radius: 25px;
+  font-size: 1.1rem;
+  font-weight: 600;
+  transition: all 0.3s ease;
+}
+
+.login-button:hover {
+  background: #0f3460;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Responsive Design */
+@media (max-width: 768px) { /* Mobile */
+  .home-content {
+    margin-left: 60px; /* Collapsed sidebar */
+  }
+
+  .hero-section {
+    padding: 20px;
+    max-width: 90%;
+    margin: 10px;
+  }
+
+  .hero-title {
+    font-size: 2rem;
+  }
+
+  .hero-subtitle {
+    font-size: 1rem;
+  }
+
+  .login-button {
+    padding: 10px 24px;
+    font-size: 1rem;
+  }
+}
+
+@media (min-width: 769px) and (max-width: 1024px) { /* Tablet */
+  .home-content {
+    margin-left: 250px; /* Expanded sidebar */
+  }
+
+  .hero-section {
+    padding: 30px;
+    max-width: 80%;
+  }
+
+  .hero-title {
+    font-size: 2.5rem;
+  }
+
+  .hero-subtitle {
+    font-size: 1.1rem;
+  }
+}
+
+@media (min-width: 1025px) { /* Desktop */
+  .home-content {
+    margin-left: 250px; /* Expanded sidebar */
+  }
+}
