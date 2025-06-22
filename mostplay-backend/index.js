@@ -18,15 +18,24 @@ const adminHomeFooterControlRouter = require("./router/admin/admin.homeFooterCon
 const app = express();
 
 // Use middleware
-app.use(cors({
-  origin: ["http://localhost:3000", "http://localhost:3001"], // Allow requests from frontend
-  methods: ["GET", "POST", "PUT", "DELETE", "PATCH"], // Allow specified methods
-  allowedHeaders: ["Content-Type", "Authorization"], // Allow necessary headers
-}));
+app.use(
+  cors({
+    origin: [
+      "http://localhost:5173",
+      "http://localhost:5174",
+      `https://${process.env.SITE_URL}`,
+      `http://${process.env.SITE_URL}`,
+      `http://www.${process.env.SITE_URL}`,
+      `www.${process.env.SITE_URL}`,
+      `${process.env.SITE_URL}`,
+      "*",
+    ], // Allow requests from frontend
+    methods: ["GET", "POST", "PUT", "DELETE", "PATCH"], // Allow specified methods
+    allowedHeaders: ["Content-Type", "Authorization"], // Allow necessary headers
+  })
+);
 
 app.use(cors());
-
-
 
 app.use(express.urlencoded({ extended: true })); // For form data parsing (optional, not needed for multipart)
 app.use(express.json()); // For JSON data (not needed for file uploads)
@@ -34,19 +43,20 @@ app.use(express.json()); // For JSON data (not needed for file uploads)
 // Serve uploaded files statically
 app.use("/uploads", express.static(path.join(__dirname, "uploads")));
 
-
-
 // * Image upload route (uses multer from uploadImage controller)
 
 app.post("/upload", uploadImage); // Matches frontend fetch URL
 
-
 // * admin routes
-app.use("/api/v1/admin", [adminAuthRouter, adminUserRouter,adminHomeControlRouter,adminHomeFooterControlRouter]);
+app.use("/api/v1/admin", [
+  adminAuthRouter,
+  adminUserRouter,
+  adminHomeControlRouter,
+  adminHomeFooterControlRouter,
+]);
 
-// * view customer user routers 
-app.use("/api/v1/frontend", [frontendAuthRouter,frontendHomeControlRouter]);
-
+// * view customer user routers
+app.use("/api/v1/frontend", [frontendAuthRouter, frontendHomeControlRouter]);
 
 // Custom middleware (if any can go here)
 
@@ -78,6 +88,5 @@ connectDb(config.DB_CONN)
   .catch((e) => console.log("Database connection failed:", e));
 
 module.exports = app; // Optional: export app for testing or other modules
-
 
 // added 2
