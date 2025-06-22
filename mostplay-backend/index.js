@@ -18,7 +18,7 @@ const adminHomeFooterControlRouter = require("./router/admin/admin.homeFooterCon
 const app = express();
 
 // Use middleware
-app.use(
+app.use( 
   cors({
     origin: [
       "http://localhost:5173",
